@@ -1,20 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mydeploy
+  name: project-deploy
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: mydeploy1
+      name: project-deploy1
   template:
     metadata:
-      name: mypod1
+      name: project-pod1
       labels:
         name: mydeploy1
     spec:
       containers:
-      - name: mycontainer
-        image: sumeetkulkarni/ci-cd-pipeline:latest   # replace with your Docker-image pushed on Dockerhub
+      - name: project-container
+        image: rajavardhanrg30/ci-cd-pipeline:latest   # replace with your Docker-image pushed on Dockerhub
         ports:
         - containerPort: 8080
+
