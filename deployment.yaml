@@ -15,6 +15,7 @@ spec:
     spec:
       containers:
       - name: mycontainer
-        image: sumeetkulkarni/ci-cd-pipeline:latest   # replace with your Docker-image pushed on Dockerhub
+        image: goku24/ci-cd-pipeline:latest   # replace with your Docker-image pushed on Dockerhub
         ports:
         - containerPort: 8080
+
