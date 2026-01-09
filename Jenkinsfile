@@ -33,20 +33,19 @@ pipeline {
             steps {
                 echo "pushing image to docker hub"
                 withCredentials([usernamePassword(credentialsId:"dockerHub",passwordVariable:"dockerHubPass",usernameVariable:"dockerHubUser")])
-                sh "docker tag ci-cd-pipeline ${env.dockerHubUser}/ci-cd-pipeline:latest"
-                sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPass}"
-                sh "docker push ${env.dockerHubUser}/ci-cd-pipeline:latest"
+                 sh "docker tag ci-cd-pipeline ${env.dockerHubUser}/ci-cd-pipeline:latest"
+                 sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPass}"
+                 sh "docker push ${env.dockerHubUser}/ci-cd-pipeline:latest"
             }
         }
          stage('Deploy to Kubernets'){
              steps{
                  script{
                      {
-                         withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'kubernetes', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
-                         sh 'kubectl delete --all pods'
-                         sh 'kubectl apply -f deployment.yaml'
-                         sh 'kubectl apply -f service.yaml'
-                         }
+                         withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'kubernetes', namespace: '', restrictKubeConfigAccess: false, serverUrl: '')
+                          sh 'kubectl delete --all pods'
+                          sh 'kubectl apply -f deployment.yaml'
+                          sh 'kubectl apply -f service.yaml'
                      }
                  }
              }
