@@ -10,23 +10,17 @@ pipeline {
         }
         stage(" Maven Unit Test") {  
             steps{
-                {
                   sh 'mvn test'        
-                }
             }
         }
         stage(" Maven Build") {
             steps{
-                {
                   sh 'mvn clean install'   
-                }
             }
         }
         stage("5. Maven Integration Test") {
             steps{
-                {
                   sh 'mvn verify'          
-                }
             }
         }
         stage ("Build"){
