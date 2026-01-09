@@ -10,21 +10,21 @@ pipeline {
         }
         stage(" Maven Unit Test") {  
             steps{
-                dir ("/var/lib/jenkins/workspace/pipeline"){
+                {
                   sh 'mvn test'        
                 }
             }
         }
         stage(" Maven Build") {
             steps{
-                dir ("/var/lib/jenkins/workspace/pipeline"){
+                {
                   sh 'mvn clean install'   
                 }
             }
         }
         stage("5. Maven Integration Test") {
             steps{
-                dir ("/var/lib/jenkins/workspace/pipeline"){
+                {
                   sh 'mvn verify'          
                 }
             }
@@ -48,7 +48,7 @@ pipeline {
          stage('Deploy to Kubernets'){
              steps{
                  script{
-                     dir('/var/lib/jenkins/workspace/pipeline') {
+                     {
                          withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'kubernetes', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
                          sh 'kubectl delete --all pods'
                          sh 'kubectl apply -f deployment.yaml'
