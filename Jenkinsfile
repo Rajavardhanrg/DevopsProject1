@@ -32,11 +32,10 @@ pipeline {
         stage ("Pushing the image to Dockerhub"){
             steps {
                 echo "pushing image to docker hub"
-                withCredentials([usernamePassword(credentialsId:"dockerHub",passwordVariable:"dockerHubPass",usernameVariable:"dockerHubUser")]) {
+                withCredentials([usernamePassword(credentialsId:"dockerHub",passwordVariable:"dockerHubPass",usernameVariable:"dockerHubUser")])
                 sh "docker tag ci-cd-pipeline ${env.dockerHubUser}/ci-cd-pipeline:latest"
                 sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPass}"
                 sh "docker push ${env.dockerHubUser}/ci-cd-pipeline:latest"
-                }
             }
         }
          stage('Deploy to Kubernets'){
