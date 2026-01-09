@@ -11,11 +11,12 @@ spec:
     metadata:
       name: project-pod1
       labels:
-        name: mydeploy1
+        name: project-deploy1
     spec:
       containers:
       - name: project-container
         image: rajavardhanrg30/ci-cd-pipeline:latest   # replace with your Docker-image pushed on Dockerhub
         ports:
         - containerPort: 8080
+
 
