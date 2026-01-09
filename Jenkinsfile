@@ -49,8 +49,8 @@ pipeline {
                  script{
                      withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'kubernetes', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
                           sh ''
-                          kubectl apply -f deployment.yaml
-                          kubectl apply -f service.yaml
+                              kubectl apply -f deployment.yaml
+                              kubectl apply -f service.yaml
                           ''
                           }
                  }
